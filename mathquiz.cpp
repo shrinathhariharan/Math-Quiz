@@ -1,5 +1,6 @@
+#include <iostream>
 #include <cmath>
-#include "mathquiz.h"
+#include "program.h"
 
 namespace Global
 {
@@ -8,7 +9,7 @@ namespace Global
     int totalQuestions{0};
 }
 
-void answerChecker(auto answer, double userAnswer)
+void answerChecker(double answer, double userAnswer)
 {
     ++Global::totalQuestions;
 
@@ -33,7 +34,7 @@ int mainMenu()
 {
     while (true)
     {
-        std::cout << "1. Instructions\n 2. Start!\n";
+        std::cout << "1. Instructions\n2. Start!\n";
         int option{};
         std::cin >> option;
         switch(option)
@@ -52,7 +53,7 @@ void startGame()
 {
     int questionType{Random::get(1, 11)};
 
-    int num1{Random::get(1, 15)};
+    int num1{Random::get(1, 25)};
     int num2{Random::get(1, 15)};
 
     std::cout << "What is ";
@@ -89,10 +90,9 @@ void startGame()
     }
     else if (questionType <= 10)
     {
-        std::cout << num1 << " / " << num2 << "? (Round to nearest three decimal places)\n"; //division
+        std::cout << "the remainder of " << num1 << " / " << num2 << "?\n"; //modulo
 
-        auto answer{static_cast<double>(num1) / num2};
-        answer = std::round(answer * 1000) / 1000;
+        int answer{(num1) % (num2)};
         double userAnswer{};
         std::cin >> userAnswer;
 
@@ -102,7 +102,7 @@ void startGame()
     {
         std::cout << num1 << " squared?\n"; //sqares
 
-        auto answer{std::pow(num1, 2)};
+        double answer{std::pow(num1, 2)};
         double userAnswer{};
         std::cin >> userAnswer;
 
@@ -143,7 +143,7 @@ int main()
         switch(mainMenu())
         {
         case 1: 
-            std::cout << "\n\nThis gives you ten math questions and you should try to answer as many of them right!\n At the end, you get a score of how well you did.\n\n";
+            std::cout << "\nThis gives you ten math questions and you should try to answer as many of them right!\n At the end, you get a score of how well you did.\n\n";
             break;
         case 2:
         {
