@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cmath>
-#include "program.h"
+#include "mathquiz.h"
 
 namespace Global
 {
